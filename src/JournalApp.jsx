@@ -1,9 +1,13 @@
 import PropTypes from 'prop-types'
+import { AppRouter } from './router/AppRouter'
+import { AppTheme } from './theme'
 
 const JournalApp = () => {
     return (
-
-        <AppRouter />
+        // El router principal de la aplicación
+        <AppTheme>
+            <AppRouter />
+        </AppTheme>
     )
 }
 
