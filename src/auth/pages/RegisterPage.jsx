@@ -4,6 +4,7 @@ import { Button, Grid, Link, TextField, Typography } from '@mui/material'
 import { Google } from '@mui/icons-material'
 import { Link as RouterLink } from 'react-router-dom'
 
+// Página para que el usuario se registre si no tiene una cuenta
 export const RegisterPage = () => {
     return (
         <AuthLayout title='Registro'>

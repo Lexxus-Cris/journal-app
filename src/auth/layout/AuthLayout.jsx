@@ -1,6 +1,6 @@
 import { Grid, Typography } from '@mui/material'
-import React from 'react'
 
+// Layout genérico para reutilizar en las vistas de la sección de login
 export const AuthLayout = ({ children, title = '' }) => {
     return (
         <Grid

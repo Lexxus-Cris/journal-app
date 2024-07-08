@@ -4,6 +4,7 @@ import { Button, Grid, Link, TextField, Typography } from '@mui/material'
 import { Google } from '@mui/icons-material'
 import { AuthLayout } from '../layout/AuthLayout'
 
+// Página que le permite al usuario iniciar sesión con su cuenta de la página o su cuenta de google
 export const LoginPage = () => {
     return (
         <AuthLayout title='login'>
