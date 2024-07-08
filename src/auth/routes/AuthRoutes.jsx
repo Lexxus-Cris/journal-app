@@ -10,10 +10,10 @@ export const AuthRoutes = () => {
             <Route path='login' element={<LoginPage />} />
 
             {/* Ruta de la página de registro */}
-            <Route path='register' Element={<RegisterPage />} />
+            <Route path='register' element={<RegisterPage />} />
 
             {/* Si el usuario quiere ingresar a una ruta diferente a las que se encuentran en AuthRoutes y no esta autenticado, sera redireccionado a /auth/login */}
-            <Route path='/*' element={ <Navigate to='/auth/login' />} />
+            <Route path='/auth/*' element={ <Navigate to='/auth/login' />} />
         </Routes>
     )
 }
