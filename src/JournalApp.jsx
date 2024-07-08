@@ -4,8 +4,9 @@ import { AppTheme } from './theme'
 
 const JournalApp = () => {
     return (
-        // El router principal de la aplicación
+        // Provider del theme de MUI
         <AppTheme>
+            {/* El router principal de la aplicación */}
             <AppRouter />
         </AppTheme>
     )
