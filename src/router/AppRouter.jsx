@@ -4,6 +4,8 @@ import { JournalRoutes } from '../journal/routes/JournalRoutes'
 
 // Router que se encarga de administrar los permisos al usuario de acceder a rutas, dependiendo del path en el que se encuentre y si ha hecho login exitosámente.
 export const AppRouter = () => {
+    
+
     return (
         <Routes>
             {/* Si se encuentra en el path que tiene al incio auth, redireccionará a las rutas que se encuentran definidas en el componente AuthRoutes */}
