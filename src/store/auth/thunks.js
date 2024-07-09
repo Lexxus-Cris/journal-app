@@ -1,3 +1,4 @@
+import { signInWithGoogle } from "../../firebase/providers";
 import { checkingCredentials } from "./authSlice";
 
 // Metódo asincrono para hacer la validación de login por medio de email y password
@@ -13,5 +14,7 @@ export const startGoogleSignIn = () => {
     return async (dispatch) => {
 
         dispatch(checkingCredentials());
+
+        const result = await signInWithGoogle();
     }
 }
