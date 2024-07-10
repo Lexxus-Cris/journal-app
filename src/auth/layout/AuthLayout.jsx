@@ -1,6 +1,7 @@
 import { Grid, Typography } from '@mui/material'
 
 // Layout genérico para reutilizar en las vistas de la sección de login
+// eslint-disable-next-line react/prop-types
 export const AuthLayout = ({ children, title = '' }) => {
     return (
         <Grid
