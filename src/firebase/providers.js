@@ -1,11 +1,9 @@
-import { createUserWithEmailAndPassword, GoogleAuthProvider, signInWithPopup, updateProfile } from "firebase/auth";
+import { createUserWithEmailAndPassword, GoogleAuthProvider, signInWithEmailAndPassword, signInWithPopup, updateProfile } from "firebase/auth";
 import { FirebaseAuth } from "./config";
-
-
 
 const googleProvider = new GoogleAuthProvider();
 
-
+// Función encargada de realizar el inicio de sesión con Google
 export const signInWithGoogle = async () => {
     try {
         const result = await signInWithPopup(FirebaseAuth, googleProvider);
@@ -42,13 +40,13 @@ export const signInWithGoogle = async () => {
     }
 }
 
+// Función que se encarga de realizar el registro de nuevos usuarios en firebase
 export const registerUser = async({ email, password, displayName}) => {
 
     try {
 
         const response = await createUserWithEmailAndPassword(FirebaseAuth, email, password);
         const { uid, photoURL } = response.user
-        console.log(response);
         await updateProfile( FirebaseAuth.currentUser, { displayName } );
 
         return {
@@ -61,6 +59,32 @@ export const registerUser = async({ email, password, displayName}) => {
 
     } catch (error) {
         console.log(error);
+        return {
+            ok: false,
+            errorMessage: error.message
+        }
+    }
+}
+
+// Función que realiza el inicio de sesión con email y password
+export const loginWithEmailPassword = async({ email, password }) => {
+
+    try {
+        //! signInWithEmailAndPassword función para hacer la autenticación
+        const response = await signInWithEmailAndPassword(FirebaseAuth, email, password );
+
+        const { photoURL, uid, displayName } = response.user;
+
+        return {
+            ok: true,
+            email,
+            photoURL,
+            uid,
+            displayName
+        }
+    } catch (error) {
+        console.log(error);
+
         return {
             ok: false,
             errorMessage: error.message
