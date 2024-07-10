@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = {
-    status: 'not-authenticated', // 'not-authenticated', 'authenticated', 'checking
+    status: 'checking', // 'not-authenticated', 'authenticated', 'checking
     uid: null,
     email: null,
     displayName: null,
