@@ -1,21 +1,21 @@
 import { Link as RouterLink} from 'react-router-dom'
-import { Button, Grid, Link, TextField, Typography } from '@mui/material'
+import { Alert, Button, Grid, Link, TextField, Typography } from '@mui/material'
 import { Google } from '@mui/icons-material'
 import { AuthLayout } from '../layout/AuthLayout'
 import { useForm } from '../../hooks/useForm'
 import { useDispatch, useSelector } from 'react-redux'
-import { checkingAuthentication, startGoogleSignIn } from '../../store/auth'
+import { startGoogleSignIn, startLoginWithEmailPass } from '../../store/auth'
 import { useMemo } from 'react'
 
 // Página que le permite al usuario iniciar sesión con su cuenta de la página o su cuenta de google
 export const LoginPage = () => {
 
-    const { status } = useSelector(state => state.auth);
+    const { status, errorMessage } = useSelector(state => state.auth);
     const dispatch = useDispatch();
     
     const { email, password, onInputChange } = useForm({
-        email: 'uriel@gmail.com',
-        password: '12345'
+        email: '',
+        password: ''
     });
 
     // Memorizamos el state del status para deshabilitar los botones cuando se encuentre con el state 'checking'
@@ -23,7 +23,7 @@ export const LoginPage = () => {
 
     const onSubmit = (e) =>{
         e.preventDefault();
-        dispatch(checkingAuthentication())
+        dispatch(startLoginWithEmailPass({ email, password }))
     }
 
     const onGoogleSignIn = () => {
@@ -47,7 +47,7 @@ export const LoginPage = () => {
                             fullWidth
                             name='email'
                             value={email}
-                            onChange={() => onInputChange()}
+                            onChange={onInputChange}
                         />
                     </Grid>
                     <Grid item
@@ -63,7 +63,7 @@ export const LoginPage = () => {
                             fullWidth
                             name='password'
                             value={password}
-                            onChange={() => onInputChange()}
+                            onChange={onInputChange}
                         />
                     </Grid>
 
@@ -71,6 +71,12 @@ export const LoginPage = () => {
                         spacing={2}
                         sx={{ mb: 2, mt: 2}}
                     >
+                        <Grid item
+                            xs={12}
+                            display={!!errorMessage ? '' : 'none'}
+                        >
+                            <Alert severity='error'>{errorMessage}</Alert>
+                        </Grid>
                         <Grid item
                             xs={12}
                             sm={6}
