@@ -1,4 +1,4 @@
-import { loginWithEmailPassword, registerUser, signInWithGoogle } from "../../firebase/providers";
+import { loginWithEmailPassword, logoutFirebase, registerUser, signInWithGoogle } from "../../firebase/providers";
 import { checkingCredentials, login, logout } from "./authSlice";
 
 // Thunk action para el inicio de sesión con Google
@@ -39,5 +39,22 @@ export const startLoginWithEmailPass = ({ email, password }) => {
         if (!result.ok) return dispatch(logout(result));
 
         dispatch(login(result));
+    }
+}
+
+
+export const startLogout = () => {
+
+    return async (dispatch) => {
+        try {
+            
+            await logoutFirebase();
+            dispatch(logout({}));
+
+        } catch (error) {
+            console.log(error);
+        }
+
+
     }
 }
